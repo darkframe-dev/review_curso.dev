@@ -1,87 +1,59 @@
-import { useEffect, useState } from "react";
+import { useState } from 'react';
 
 export default function Home() {
-  const [resultado, setResultado] = useState({
-    "1. GERRI": 0,
-    MILTON: 0,
-  });
+  const [resposta, setResposta] = useState(null);
 
-  const [mensagem, setMensagem] = useState("");
-
-  async function votar(opcao) {
-    const response = await fetch("/api/v1/status", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ opcao }),
-    });
-
-    const data = await response.json();
-
-    if (data.erro) {
-      alert(data.erro);
-    }
-
-    atualizar();
-  }
-
-  async function atualizar() {
-    const response = await fetch("/api/v1/status");
-    const data = await response.json();
-    setResultado(data);
-
-    const total = data["1. GERRI"] + data["MILTON"];
-
-    if (total > 0) {
-      if (data["1. GERRI"] > data["MILTON"]) {
-        setMensagem(
-          "Até o presente momento 1. GERRI deve sair do plantão bravo",
-        );
-      } else if (data["MILTON"] > data["1. GERRI"]) {
-        setMensagem("Até o presente momento MILTON deve sair do plantão bravo");
-      } else {
-        setMensagem("Até o presente momento há empate técnico");
-      }
-    }
-  }
-
-  useEffect(() => {
-    atualizar();
-    const intervalo = setInterval(atualizar, 3000);
-    return () => clearInterval(intervalo);
-  }, []);
-
-  const total = resultado["1. GERRI"] + resultado["MILTON"];
-
-  const percGerri =
-    total > 0 ? ((resultado["1. GERRI"] / total) * 100).toFixed(1) : 0;
-
-  const percMilton =
-    total > 0 ? ((resultado["MILTON"] / total) * 100).toFixed(1) : 0;
+  const handleClick = (valor) => {
+    setResposta(valor);
+  };
 
   return (
-    <div style={{ fontFamily: "Arial", padding: 40 }}>
-      <h1>Votação anônima</h1>
-      <h2>QUEM DEVE SAIR DO PLANTÃO BRAVO?</h2>
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontFamily: 'sans-serif',
+        padding: '16px',
+        textAlign: 'center',
+      }}
+    >
+      <h1>
+        Como conquistar o coração de uma mulher chamada Vanessa que seja
+        policial militar?
+      </h1>
 
-      <button onClick={() => votar("1. GERRI")}>1. GERRI</button>
+      <p>Você quer saber a resposta?</p>
 
-      <button onClick={() => votar("MILTON")} style={{ marginLeft: 10 }}>
-        2. MILTON
-      </button>
+      <div style={{ marginTop: '16px' }}>
+        <button
+          onClick={() => handleClick('sim')}
+          style={{ marginRight: '8px', padding: '8px 16px' }}
+        >
+          Sim
+        </button>
 
-      <div style={{ marginTop: 30 }}>
-        <p>
-          1. GERRI: {resultado["1. GERRI"]} votos ({percGerri}%)
-        </p>
-        <p>
-          MILTON: {resultado["MILTON"]} votos ({percMilton}%)
-        </p>
-        <p>
-          <strong>Total: {total}</strong>
-        </p>
+        <button
+          onClick={() => handleClick('nao')}
+          style={{ padding: '8px 16px' }}
+        >
+          Não
+        </button>
       </div>
 
-      <h3 style={{ color: "red" }}>{mensagem}</h3>
+      {resposta === 'sim' && (
+        <p style={{ marginTop: '24px' }}>
+          Não há fórmula mágica, mas procure ser sincero e verdadeiro!
+        </p>
+      )}
+
+      {resposta === 'nao' && (
+        <p style={{ marginTop: '24px' }}>
+          É uma pena, não sabe a oportunidade que está perdendo.
+        </p>
+      )}
     </div>
   );
 }
