@@ -21,8 +21,7 @@ export default function Home() {
       }}
     >
       <h1>
-        Como conquistar o coração de uma mulher chamada Vanessa que seja
-        policial militar?
+        Como conquistar o coração de uma mulher chamada LEILA que seja POLICIAL PENAL?
       </h1>
 
       <p>Você quer saber a resposta?</p>
