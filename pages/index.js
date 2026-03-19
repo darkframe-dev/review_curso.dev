@@ -50,7 +50,7 @@ export default function Home() {
 
       {resposta === 'nao' && (
         <p style={{ marginTop: '24px' }}>
-          É uma pena, não sabe a oportunidade que está perdendo.
+          É uma pena, não sabe a oportunidade que estar perdendo.
         </p>
       )}
     </div>
