@@ -5,44 +5,56 @@ export default function Home() {
   const [resultado, setResultado] = useState("");
 
   const capitais = {
-    acre: "Rio Branco",
-    alagoas: "Maceió",
-    amapa: "Macapá",
-    amapá: "Macapá",
-    amazonas: "Manaus",
-    bahia: "Salvador",
-    ceara: "Fortaleza",
-    ceará: "Fortaleza",
-    "distrito federal": "Brasília",
-    "espirito santo": "Vitória",
-    "espírito santo": "Vitória",
-    goias: "Goiânia",
-    goiás: "Goiânia",
-    maranhao: "São Luís",
-    maranhão: "São Luís",
-    "mato grosso": "Cuiabá",
-    "mato grosso do sul": "Campo Grande",
-    "minas gerais": "Belo Horizonte",
-    para: "Belém",
-    pará: "Belém",
-    paraiba: "João Pessoa",
-    paraíba: "João Pessoa",
-    parana: "Curitiba",
-    paraná: "Curitiba",
-    pernambuco: "Recife",
-    piaui: "Teresina",
-    piauí: "Teresina",
-    "rio de janeiro": "Rio de Janeiro",
-    "rio grande do norte": "Natal",
-    "rio grande do sul": "Porto Alegre",
-    rondonia: "Porto Velho",
-    rondônia: "Porto Velho",
-    roraima: "Boa Vista",
-    "santa catarina": "Florianópolis",
-    "sao paulo": "São Paulo",
-    "são paulo": "São Paulo",
-    sergipe: "Aracaju",
-    tocantins: "Palmas",
+    alabama: "Montgomery",
+    alaska: "Juneau",
+    arizona: "Phoenix",
+    arkansas: "Little Rock",
+    california: "Sacramento",
+    colorado: "Denver",
+    connecticut: "Hartford",
+    delaware: "Dover",
+    florida: "Tallahassee",
+    georgia: "Atlanta",
+    hawaii: "Honolulu",
+    idaho: "Boise",
+    illinois: "Springfield",
+    indiana: "Indianapolis",
+    iowa: "Des Moines",
+    kansas: "Topeka",
+    kentucky: "Frankfort",
+    louisiana: "Baton Rouge",
+    maine: "Augusta",
+    maryland: "Annapolis",
+    massachusetts: "Boston",
+    michigan: "Lansing",
+    minnesota: "Saint Paul",
+    mississippi: "Jackson",
+    missouri: "Jefferson City",
+    montana: "Helena",
+    nebraska: "Lincoln",
+    nevada: "Carson City",
+    "new hampshire": "Concord",
+    "new jersey": "Trenton",
+    "new mexico": "Santa Fe",
+    "new york": "Albany",
+    "north carolina": "Raleigh",
+    "north dakota": "Bismarck",
+    ohio: "Columbus",
+    oklahoma: "Oklahoma City",
+    oregon: "Salem",
+    pennsylvania: "Harrisburg",
+    "rhode island": "Providence",
+    "south carolina": "Columbia",
+    "south dakota": "Pierre",
+    tennessee: "Nashville",
+    texas: "Austin",
+    utah: "Salt Lake City",
+    vermont: "Montpelier",
+    virginia: "Richmond",
+    washington: "Olympia",
+    "west virginia": "Charleston",
+    wisconsin: "Madison",
+    wyoming: "Cheyenne",
   };
 
   function buscarCapital() {
@@ -53,21 +65,22 @@ export default function Home() {
         `A capital do estado ${estado} é a cidade ${capitais[nomeEstado]}.`,
       );
     } else {
-      setResultado(
-        "Estado não encontrado. Digite um estado brasileiro válido.",
-      );
+      setResultado("Estado não encontrado. Digite um estado americano válido.");
     }
   }
 
   return (
     <div className="container">
       <div className="card">
-        <h1>Consulta de Capitais do Brasil</h1>
-        <p>Digite o nome de um estado brasileiro para descobrir sua capital.</p>
+        <h1>Capitais dos Estados Americanos</h1>
+        <p>
+          Digite o nome de um estado dos Estados Unidos para descobrir sua
+          capital.
+        </p>
 
         <input
           type="text"
-          placeholder="Ex: Piauí"
+          placeholder="Ex: Texas"
           value={estado}
           onChange={(e) => setEstado(e.target.value)}
         />
@@ -84,13 +97,13 @@ export default function Home() {
           justify-content: center;
           align-items: center;
           padding: 24px;
-          background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
+          background: linear-gradient(135deg, #0f172a, #1d4ed8, #dc2626);
           font-family: Arial, sans-serif;
         }
 
         .card {
           width: 100%;
-          max-width: 520px;
+          max-width: 540px;
           background: rgba(255, 255, 255, 0.12);
           backdrop-filter: blur(12px);
           border-radius: 20px;
@@ -126,7 +139,7 @@ export default function Home() {
           padding: 14px;
           border: none;
           border-radius: 12px;
-          background: #facc15;
+          background: #f8fafc;
           color: #111827;
           font-size: 1rem;
           font-weight: bold;
@@ -135,7 +148,7 @@ export default function Home() {
         }
 
         button:hover {
-          background: #fde047;
+          background: #dbeafe;
           transform: translateY(-2px);
         }
 
