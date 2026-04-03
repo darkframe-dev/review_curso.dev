@@ -1,142 +1,151 @@
+import { useState } from "react";
+
 export default function Home() {
+  const [estado, setEstado] = useState("");
+  const [resultado, setResultado] = useState("");
+
+  const capitais = {
+    acre: "Rio Branco",
+    alagoas: "Maceió",
+    amapa: "Macapá",
+    amapá: "Macapá",
+    amazonas: "Manaus",
+    bahia: "Salvador",
+    ceara: "Fortaleza",
+    ceará: "Fortaleza",
+    "distrito federal": "Brasília",
+    "espirito santo": "Vitória",
+    "espírito santo": "Vitória",
+    goias: "Goiânia",
+    goiás: "Goiânia",
+    maranhao: "São Luís",
+    maranhão: "São Luís",
+    "mato grosso": "Cuiabá",
+    "mato grosso do sul": "Campo Grande",
+    "minas gerais": "Belo Horizonte",
+    para: "Belém",
+    pará: "Belém",
+    paraiba: "João Pessoa",
+    paraíba: "João Pessoa",
+    parana: "Curitiba",
+    paraná: "Curitiba",
+    pernambuco: "Recife",
+    piaui: "Teresina",
+    piauí: "Teresina",
+    "rio de janeiro": "Rio de Janeiro",
+    "rio grande do norte": "Natal",
+    "rio grande do sul": "Porto Alegre",
+    rondonia: "Porto Velho",
+    rondônia: "Porto Velho",
+    roraima: "Boa Vista",
+    "santa catarina": "Florianópolis",
+    "sao paulo": "São Paulo",
+    "são paulo": "São Paulo",
+    sergipe: "Aracaju",
+    tocantins: "Palmas",
+  };
+
+  function buscarCapital() {
+    const nomeEstado = estado.trim().toLowerCase();
+
+    if (capitais[nomeEstado]) {
+      setResultado(
+        `A capital do estado ${estado} é a cidade ${capitais[nomeEstado]}.`,
+      );
+    } else {
+      setResultado(
+        "Estado não encontrado. Digite um estado brasileiro válido.",
+      );
+    }
+  }
+
   return (
-    <div className="page">
+    <div className="container">
       <div className="card">
-        <span className="tag">Feliz 15 anos ✨</span>
+        <h1>Consulta de Capitais do Brasil</h1>
+        <p>Digite o nome de um estado brasileiro para descobrir sua capital.</p>
 
-        <h1>Parabéns, Maria Cecília!</h1>
+        <input
+          type="text"
+          placeholder="Ex: Piauí"
+          value={estado}
+          onChange={(e) => setEstado(e.target.value)}
+        />
 
-        <p className="highlight">
-          Hoje o mundo ganha uma nova versão de você: mais forte, mais sábia e
-          ainda mais especial.
-        </p>
+        <button onClick={buscarCapital}>Consultar</button>
 
-        <p>
-          Que este novo capítulo seja cheio de risadas, amigos verdadeiros,
-          conquistas incríveis e muitos sonhos realizados. Que você nunca tenha
-          medo de ser quem realmente é, porque é exatamente isso que te torna
-          única, Maria Cecília.
-        </p>
-
-        <p>
-          Guarde este dia no coração: é o início de uma jornada linda, onde cada
-          escolha sua escreve um pedaço da própria história. Estarei sempre
-          torcendo por você, aplaudindo cada passo e cada vitória.
-        </p>
-
-        <p className="signature">
-          Com carinho,
-          <strong>seu amigo que tem muito orgulho de você 💖</strong>
-        </p>
+        {resultado && <div className="resultado">{resultado}</div>}
       </div>
 
       <style jsx>{`
-        .page {
+        .container {
           min-height: 100vh;
           display: flex;
-          align-items: center;
           justify-content: center;
+          align-items: center;
           padding: 24px;
-          background: radial-gradient(
-            circle at top,
-            #ff9a9e 0%,
-            #fad0c4 40%,
-            #fbc2eb 70%,
-            #a18cd1 100%
-          );
-          font-family:
-            system-ui,
-            -apple-system,
-            BlinkMacSystemFont,
-            "Segoe UI",
-            sans-serif;
+          background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
+          font-family: Arial, sans-serif;
         }
 
         .card {
-          max-width: 640px;
           width: 100%;
+          max-width: 520px;
           background: rgba(255, 255, 255, 0.12);
-          border-radius: 24px;
-          padding: 32px 28px;
-          box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
-          backdrop-filter: blur(18px);
-          border: 1px solid rgba(255, 255, 255, 0.4);
-          color: #fff;
-          text-align: left;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .card::before {
-          content: "";
-          position: absolute;
-          inset: -40%;
-          background: conic-gradient(
-            from 180deg,
-            rgba(255, 255, 255, 0.1),
-            rgba(255, 255, 255, 0),
-            rgba(255, 255, 255, 0.18),
-            rgba(255, 255, 255, 0)
-          );
-          opacity: 0.7;
-          mix-blend-mode: screen;
-          pointer-events: none;
-        }
-
-        .tag {
-          display: inline-block;
-          padding: 6px 14px;
-          border-radius: 999px;
-          background: linear-gradient(135deg, #ff9a9e, #fecfef);
-          color: #4a154b;
-          font-size: 0.78rem;
-          font-weight: 700;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          margin-bottom: 14px;
-          position: relative;
-          z-index: 1;
+          backdrop-filter: blur(12px);
+          border-radius: 20px;
+          padding: 32px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+          text-align: center;
+          color: white;
         }
 
         h1 {
+          margin-bottom: 12px;
           font-size: 2rem;
-          margin: 4px 0 16px;
-          line-height: 1.2;
-          position: relative;
-          z-index: 1;
-          text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
         }
 
         p {
-          margin: 10px 0;
+          margin-bottom: 20px;
           font-size: 1rem;
-          line-height: 1.7;
-          position: relative;
-          z-index: 1;
+          color: #e5e7eb;
         }
 
-        .highlight {
-          font-size: 1.05rem;
-          font-weight: 600;
+        input {
+          width: 100%;
+          padding: 14px;
+          border: none;
+          border-radius: 12px;
+          outline: none;
+          font-size: 1rem;
+          margin-bottom: 16px;
         }
 
-        .signature {
+        button {
+          width: 100%;
+          padding: 14px;
+          border: none;
+          border-radius: 12px;
+          background: #facc15;
+          color: #111827;
+          font-size: 1rem;
+          font-weight: bold;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        button:hover {
+          background: #fde047;
+          transform: translateY(-2px);
+        }
+
+        .resultado {
           margin-top: 20px;
-          font-style: italic;
-        }
-
-        strong {
-          font-weight: 700;
-        }
-
-        @media (max-width: 600px) {
-          .card {
-            padding: 22px 18px;
-          }
-
-          h1 {
-            font-size: 1.6rem;
-          }
+          padding: 16px;
+          border-radius: 12px;
+          background: rgba(255, 255, 255, 0.18);
+          font-size: 1.05rem;
+          line-height: 1.5;
         }
       `}</style>
     </div>
